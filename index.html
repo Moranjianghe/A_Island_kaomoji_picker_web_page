@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A 岛颜文字拾取器</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1>A 岛颜文字拾取器</h1>
+    <h3>常用</h3>
+    <div id="most-used-emoji"></div>
+    <p class="tip">单击以下颜文字即可复制到剪贴板：</p>
+    <div id="jsonOutput">
+        <p class="emoji">(;´Д`)</p>
+    </div>
+
+    <script>
+        // 读取 kaomoji.json 文件并解析
+        fetch('kaomoji.json')
+            .then(response => response.json())
+            .then(data => {
+                // 将最近使用的颜文字列表存储到 localStorage 中
+                var recentlyUsedEmojiList = localStorage.getItem('recentlyUsedEmojiList');
+                if (recentlyUsedEmojiList) {
+                    recentlyUsedEmojiList = JSON.parse(recentlyUsedEmojiList);
+                } else {
+                    recentlyUsedEmojiList = [];
+                }
+
+                // 渲染颜文字列表
+                function renderEmojiList(emojiList, title) {
+                    var emojiElements = emojiList.map(function (emoji) {
+                        // 创建颜文字元素
+                        var emojiElement = document.createElement('p');
+                        emojiElement.textContent = emoji;
+                        emojiElement.classList.add('emoji');
+                        emojiElement.title = '点击复制到剪贴板';
+
+                        // 点击颜文字时将其复制到剪贴板
+                        emojiElement.addEventListener('click', function () {
+                            navigator.clipboard.writeText(emoji);
+                            // 将当前颜文字添加到最近使用的颜文字列表中
+                            if (!recentlyUsedEmojiList.includes(emoji)) {
+                                recentlyUsedEmojiList.unshift(emoji);
+                                // 只保留最近使用的 10 个颜文字
+                                recentlyUsedEmojiList = recentlyUsedEmojiList.slice(0, 10);
+                                localStorage.setItem('recentlyUsedEmojiList', JSON.stringify(recentlyUsedEmojiList));
+                                renderRecentlyUsedEmojiList();
+                            }
+                        });
+
+                        return emojiElement;
+                    });
+
+                    // 创建标题元素
+                    var titleElement = document.createElement('h3');
+                    titleElement.textContent = title;
+
+                    // 创建颜文字列表容器元素
+                    var emojiListElement = document.createElement('div');
+                    emojiListElement.classList.add('emoji-list');
+                    emojiListElement.append(...emojiElements);
+
+                    // 将标题和颜文字列表容器元素添加到输出容器 jsonOutput 中
+                    var jsonOutput = document.getElementById('jsonOutput');
+                    jsonOutput.append(titleElement, emojiListElement);
+                }
+
+                // 渲染最近使用的颜文字列表
+                function renderRecentlyUsedEmojiList() {
+                    var recentlyUsedEmojiElements = recentlyUsedEmojiList.map(function (emoji) {
+                        // 创建颜文字元素
+                        var emojiElement = document.createElement('p');
+                        emojiElement.textContent = emoji;
+                        emojiElement.classList.add('emoji');
+                        emojiElement.title = '点击复制到剪贴板';
+
+                        // 点击颜文字时将其复制到剪贴板
+                        emojiElement.addEventListener('click', function () {
+                            navigator.clipboard.writeText(emoji);
+                        });
+
+                        return emojiElement;
+                    });
+
+                    // 将最近使用的颜文字元素添加到 most-used-emoji 容器中
+                    var mostUsedEmojiElement = document.getElementById('most-used-emoji');
+                    mostUsedEmojiElement.textContent = '';
+                    mostUsedEmojiElement.append(...recentlyUsedEmojiElements);
+
+                }
+
+                // 遍历所有数组，渲染颜文字列表
+                for (var listName in data) {
+                    renderEmojiList(data[listName], listName);
+                }
+
+                // 初始渲染最近使用的颜文字列表
+                renderRecentlyUsedEmojiList();
+            });
+
+    </script>
+
+</body>
+
+</html>
