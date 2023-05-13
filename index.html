@@ -15,13 +15,15 @@
 
 <body>
     <h1>A 岛颜文字拾取器</h1>
+    <p class="tip">单击以下颜文字即可复制到剪贴板</p>
     <h3>常用</h3>
     <div id="most-used-emoji"></div>
-    <p class="tip">单击以下颜文字即可复制到剪贴板6</p>
     <div id="jsonOutput">
     </div>
 
     <script>
+        const charCode = 'A'.charCodeAt(0);
+        const unicode = '\\u' + charCode.toString(16).toUpperCase(); // \u0041
         // 读取 kaomoji.json 文件并解析
         fetch('kaomoji.json')
             .then(response => response.json())

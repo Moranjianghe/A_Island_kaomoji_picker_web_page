@@ -1,17 +1,26 @@
 .emoji {
     font-family: Roboto, Helvetica, Arial, sans-serif;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px; 
+}
+
+.emoji-list,#most-used-emoji{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 a.custom-link {
     display: flex;
     align-items: center;
-  }
-  
-  .custom-link img {
+}
+
+.custom-link img {
     height: 10px;
-  }
-  
-  .custom-link span {
-    font-size: 20px;
-  }
-  
+}
+
+.custom-link span {
+    font-size: 10px;
+}
