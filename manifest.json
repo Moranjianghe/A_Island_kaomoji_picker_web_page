@@ -1,0 +1,21 @@
+{
+    "name": "A 岛颜文字拾取器",
+    "short_name": "A 岛颜文字",
+    "icons": [
+      {
+        "src": "icon.svg",
+        "type": "image/svg",
+        "sizes": "192x192"
+      },
+      {
+        "src": "icon.svg",
+        "type": "image/svg",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "pink",
+    "theme_color": "#66ccff"
+  }
+  
