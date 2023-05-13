@@ -1,3 +1,17 @@
 .emoji {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
+
+a.custom-link {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-link img {
+    height: 10px;
+  }
+  
+  .custom-link span {
+    font-size: 20px;
+  }
+  
