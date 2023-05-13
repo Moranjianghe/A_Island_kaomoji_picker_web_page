@@ -1,5 +1,5 @@
 .emoji {
-    font-family:Roboto,Helvetica, Arial, sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     width: 100px;
     height: 40px;
     text-align: center;
@@ -7,11 +7,12 @@
     -webkit-user-select: none;
     user-select: none;
 }
-.emoji:hover{
+
+.emoji:hover {
     background-color: #FCE4EC;
 }
 
-.emoji:active{
+.emoji:active {
     background-color: #F48FB1;
 }
 
@@ -35,11 +36,12 @@ a.custom-link {
     font-size: 10px;
 }
 
-#body{
-    max-width: min(1000px,calc(100% - 32px));
+#body {
+    max-width: min(1000px, calc(100% - 32px));
     margin: 0 auto;
     background-color: FFF;
 }
 
-
-  
+h3,h2,h1,.tip {
+    padding-left: 30px;
+}
