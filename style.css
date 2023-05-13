@@ -1,12 +1,22 @@
 .emoji {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family:Roboto,Helvetica, Arial, sans-serif;
     width: 100px;
     height: 40px;
     text-align: center;
-    line-height: 40px; 
+    line-height: 40px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.emoji:hover{
+    background-color: #FCE4EC;
 }
 
-.emoji-list,#most-used-emoji{
+.emoji:active{
+    background-color: #F48FB1;
+}
+
+.emoji-list,
+#most-used-emoji {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -24,3 +34,12 @@ a.custom-link {
 .custom-link span {
     font-size: 10px;
 }
+
+#body{
+    max-width: min(1000px,calc(100% - 32px));
+    margin: 0 auto;
+    background-color: FFF;
+}
+
+
+  
