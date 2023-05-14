@@ -19,13 +19,19 @@
     <div id=body>
         <h1>A 岛颜文字拾取器</h1>
         <p class="tip">单击以下颜文字即可复制到剪贴板</p>
+        <p id="netMessage" class="tip"></p>
         <h3>常用</h3>
         <div id="most-used-emoji"></div>
         <div id="jsonOutput">
         </div>
         <script>
-            const charCode = 'A'.charCodeAt(0);
-            const unicode = '\\u' + charCode.toString(16).toUpperCase(); // \u0041
+            navigator.serviceWorker.addEventListener('message', function (event) {
+                if (event.data.type === 'updateNetworkStatus') {
+                    const messageElement = document.getElementById('netMessage');
+                    messageElement.innerText = event.data.message;
+                }
+            });
+
             // 读取 kaomoji.json 文件并解析
             fetch('kaomoji.json')
                 .then(response => response.json())
@@ -108,6 +114,10 @@
                     // 初始渲染最近使用的颜文字列表
                     renderRecentlyUsedEmojiList();
                 });
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js');
+            }
 
         </script>
         <a href="https://github.com/Moranjianghe/A_Island_kaomoji_picker_web_page" class="custom-link">
